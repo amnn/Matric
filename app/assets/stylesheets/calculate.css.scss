@@ -1,0 +1,63 @@
+// Place all the styles related to the Calculate controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#pane
+{
+	width:250px;
+	height:100%;
+	background-color:#fff;
+	margin:0px 20px 0px 20px;
+	float:left;
+}
+
+#pane ul
+{
+	list-style-type:none;
+}
+
+#pane ul, #pane ul a
+{
+	font-family: "Calibri", "Helvetica", sans-serif;
+	text-decoration:none;
+}
+
+#pane > ul > li li:hover
+{
+	background-color:#95b3d7;
+}
+
+#pane > ul > li li:hover a
+{
+	color:#e4ecf6;
+}
+
+#pane > ul > li li:hover .val
+{
+	color:#e4ecf6;
+}
+
+#pane ul li a
+{
+	margin-left:20px;
+}
+
+#pane > ul > li > a
+{
+	font-size:16pt;
+	color:#e4ecf6;
+}
+
+#pane > ul > li li a
+{
+	color:#6f83a2;
+}
+
+.val { float:right; }
+
+#pane > ul > li > .val
+{
+    margin-right:10px;
+    font-size:16pt;
+    color:#95b3d7;
+}

@@ -1,0 +1,27 @@
+<div id="pane">
+  <ul id="pane-1" class="accordian startOpen">
+
+	<li><a href="#">Ans</a><span class="val"><%= @calculation.ans %></span></li>
+	<li><a href="#">Variables</a>
+	  <ul>
+		<% @calculation.add_var "a", 4 %>
+		<% ('a'..'z').each do |c| %>
+		<% val = @calculation.vars[c].nil? ? "" : @calculation.vars[c] %>
+
+		<li><a href="#"><%="#{ c }"%></a><span class="val"><%=val%></span></li>
+
+		<% end %>
+	  </ul>
+	</li>
+	<li><a href="#">Matrices</a>
+	  <ul>
+		<% ('A'..'Z').each do |c| %>
+		<% mat = @calculation.mats[c].nil? ? "" : @calculation.mats[c] %>
+
+		<li><a href="#"><%="#{ c }"%></a><span class="val"><%=mat%></span></li>
+		<% end %>
+	  </ul>
+	</li>
+  </ul>
+
+</div>
