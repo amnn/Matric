@@ -2,7 +2,6 @@
 # require "./Matrix.rb"
 
 class Calculation
-
   attr_reader :calc, :vars, :mats, :ans
 
   def initialize

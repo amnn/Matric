@@ -69,12 +69,14 @@ class Matrix
   end
 
   def coerce other
+
     case other
     when Numeric
       return ScalarMultiple.new( other ), self
     else
       raise TypeError, "Cannot Coerce #{ other.class } to work with Matrix"
     end
+
   end
 
   attr_accessor :rows

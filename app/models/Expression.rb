@@ -1,4 +1,3 @@
-# require "./Matrix.rb"
 
 class Expression < Numeric
 
