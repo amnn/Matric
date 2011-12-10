@@ -3,7 +3,7 @@
 
 	<li><a>Ans</a><span class="val"><%= @calc.ans %></span></li>
 	<li><a>Variables</a>
-	  <ul id="vars">
+	  <ul>
 		<% ('a'..'z').each do |c| %>
 		<% val = @calc.vars[c.to_sym].nil? ? "" : @calc.vars[c.to_sym] %>
 		<li>
@@ -14,7 +14,7 @@
 	  </ul>
 	</li>
 	<li><a>Matrices</a>
-	  <ul id="mats">
+	  <ul>
 		<% ('A'..'Z').each do |c| %>
 		<% mat = @calc.mats[c.to_sym].nil? ? "" : @calc.mats[c.to_sym] %>
 		<li>
