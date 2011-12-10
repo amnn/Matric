@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   around_filter :wrap_sync
+  
+  ApplicationController::Matrix = Matrix
+  ApplicationController::Expression = Expression
+  ApplicationController::Calculation = Calculation
 
   def wrap_sync
     sync_session
