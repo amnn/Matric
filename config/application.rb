@@ -2,9 +2,9 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-require "#{Rails.root}/models/matrix.rb"
-require "#{Rails.root}/models/expression.rb"
-require "#{Rails.root}/models/calculation.rb"
+require File.expand_path("../../app/models/matrix.rb", __FILE__)
+require File.expand_path("../../app/models/expression.rb", __FILE__)
+require File.expand_path("../../app/models/calculation.rb", __FILE__)
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
