@@ -18,8 +18,9 @@ module Matric
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
 
-    config.eager_load_paths += %W(#{config.tooy}/app/models)
-
+    require %W(#{config.root}/app/models/matrix.rb)
+    require %W(#{config.root}/app/models/expression.rb)
+    require %W(#{condig.root}/app/models/calculation.rb)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
