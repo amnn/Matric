@@ -1,24 +1,26 @@
 <div id="pane">
   <ul id="pane-1" class="accordian startOpen">
 
-	<li><a href="#">Ans</a><span class="val"><%= @calculation.ans %></span></li>
-	<li><a href="#">Variables</a>
-	  <ul>
-		<% @calculation.add_var "a", 4 %>
+	<li><a>Ans</a><span class="val"><%= @calc.ans %></span></li>
+	<li><a>Variables</a>
+	  <ul id="vars">
 		<% ('a'..'z').each do |c| %>
-		<% val = @calculation.vars[c].nil? ? "" : @calculation.vars[c] %>
-
-		<li><a href="#"><%="#{ c }"%></a><span class="val"><%=val%></span></li>
-
+		<% val = @calc.vars[c.to_sym].nil? ? "" : @calc.vars[c.to_sym] %>
+		<li>
+		  <%=link_to(c, var_path(c))%>
+		  <span class="val" id="var-<%=c%>"><%=val%></span>
+		</li>
 		<% end %>
 	  </ul>
 	</li>
-	<li><a href="#">Matrices</a>
-	  <ul>
+	<li><a>Matrices</a>
+	  <ul id="mats">
 		<% ('A'..'Z').each do |c| %>
-		<% mat = @calculation.mats[c].nil? ? "" : @calculation.mats[c] %>
-
-		<li><a href="#"><%="#{ c }"%></a><span class="val"><%=mat%></span></li>
+		<% mat = @calc.mats[c.to_sym].nil? ? "" : @calc.mats[c.to_sym] %>
+		<li>
+		  <%=link_to(c, mat_path(c))%>
+		  <span class="val" id="mat-<%=c%>"><%=mat%></span>
+		</li>
 		<% end %>
 	  </ul>
 	</li>

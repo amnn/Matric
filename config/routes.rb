@@ -2,6 +2,13 @@ Matric::Application.routes.draw do
 
   root :to => "calculate#index"
 
+  match "var/:id" => "calculate#var", :as => :var, :via => [:get, :post]
+  match "mat/:id" => "calculate#matrix", :as => :mat, :via => [:get, :post]
+
+  match "save" => "calculate#save",
+        :defaults => { :format => 'text' }, :as => :save
+
+
   get "test/setup"
 
   get "test/mc"

@@ -1,11 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :check_session
+  around_filter :wrap_sync
 
-  def check_session
-    session[:calc] ||= Calculation.new
-    @calculation = session[:calc]
+  def wrap_sync
+    sync_session
+    yield
+    sync_session
+  end
+
+  def sync_session
+    @calc ||= session[:calc] || Calculation.new
+    session[:calc] = @calc
   end
 
 end

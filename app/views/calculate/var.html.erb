@@ -1,2 +1,18 @@
-<h1>Calculate#var</h1>
-<p>Find me in app/views/calculate/var.html.erb</p>
+<%= render "variable_pane" %>
+
+<div id="flash"></div>
+
+<div id="var-edit">
+Currently Editing: <span id="var-name"><%= @var %></span>
+<%= form_tag(var_path(@var), :remote => true) do %>
+    <%= text_field_tag(:val, 
+		@calc.vars[@var.to_sym], 
+		:class => "symbol-input", :id => "field-1") %>
+	<div id="buttons">
+	  <%= submit_tag( "Save", :class => "button-normal" ) %>
+	  <%= submit_tag( "Clear", :class => "button-warn" ) %>
+	  <%= link_to "Cancel", root_path, :class => "button-cancel" %>
+	</div>
+<% end %>
+
+</div>
