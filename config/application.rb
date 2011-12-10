@@ -96,5 +96,6 @@ module Matric
       require Rails.root.join("app/models/expression")
       require Rails.root.join("app/models/calculation")
     end
+
   end
 end
