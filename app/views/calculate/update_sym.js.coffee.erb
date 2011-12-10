@@ -1,0 +1,17 @@
+
+<% @fields.each do |field, contents| %>
+
+$('#'+'<%= field %>').val( '<%= contents %>' )
+
+<% end %>
+
+console.log("html")
+console.log($('#<%= @type %>-<%= @var %>').html())
+$('#'+'<%= @type %>'+'-'+'<%= @var %>').html('<%= @calc.vars[@var.to_sym] %>')
+
+flash = $('#flash')
+
+flash.removeClass().addClass('<%= flash[:type] %>')
+flash.html('<%= flash[:msg] %>')
+flash.slideDown('normal')
+
