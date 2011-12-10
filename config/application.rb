@@ -44,5 +44,12 @@ module Matric
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    config.after_initialize do
+      require Rails.root.join('/app/models/Matrix.rb')
+      require Rails.root.join('/app/models/Expression.rb')
+      require Rails.root.join('/app/models/Calculation.rb')
+    end
+    
   end
 end
