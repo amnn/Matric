@@ -18,9 +18,9 @@ module Matric
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
 
-    require "#{Rails.root}/app/models/matrix.rb"
-    require "#{Rails.root}/app/models/expression.rb"
-    require "#{Rails.root}/app/models/calculation.rb"
+    require "#{Rails.root}/models/matrix.rb"
+    require "#{Rails.root}/models/expression.rb"
+    require "#{Rails.root}/models/calculation.rb"
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
