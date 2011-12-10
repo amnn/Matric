@@ -1,7 +1,3 @@
-require Rails.root.join('/app/models/matrix.rb')
-require Rails.root.join('/app/models/expression.rb')
-require Rails.root.join('/app/models/calculation.rb')
-
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
