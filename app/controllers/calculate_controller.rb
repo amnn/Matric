@@ -43,9 +43,7 @@ class CalculateController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js do
-        render "update_sym.js.coffee.erb"
-      end
+      format.js { render "update_sym.js.coffee.erb" }
     end
   end
 

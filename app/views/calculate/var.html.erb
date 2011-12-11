@@ -2,8 +2,8 @@
 
 <div id="flash"></div>
 
-<div id="var-edit">
-Currently Editing: <span id="var-name"><%= @var %></span>
+<div id="sym-edit">
+Currently Editing: <span id="sym-name"><%= @var %></span>
 <%= form_tag(var_path(@var), :remote => true) do %>
     <%= text_field_tag(:val, 
 		@calc.vars[@var.to_sym], 
