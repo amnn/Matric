@@ -5,9 +5,10 @@ $('#'+'<%= field %>').val( '<%= contents %>' )
 
 <% end %>
 
-console.log("html")
-console.log($('#<%= @type %>-<%= @var %>').html())
-$('#'+'<%= @type %>'+'-'+'<%= @var %>').html('<%= @calc.vars[@var.to_sym] %>')
+field = '#'+'<%= @type %>'+'-'+'<%= @type == "var" ? @var : @mat %>'
+value = '<%= @type == "var" ? @calc.vars[@var.to_sym] : @calc.mats[@mat.to_sym] %>'
+
+$(field).html(value)
 
 flash = $('#flash')
 
