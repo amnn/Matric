@@ -3,13 +3,38 @@
 <div id="flash"></div>
 
 <div id="sym-edit">
-Currently Editing: <span id="sym-name"><%= @mat %></span>
+	
+<div id="top-bar">
+	<span id="instructions">Currently Editing: <span id="sym-name"><%= @mat %></span></span>
+	
+	<%= form_tag(mat_path(@mat)) do %>	
+		<span id="dimensions">
+			Dimensions 
+			<% options_x = (1..10).map { |n| "<option #{'selected=\'selected\'' if n==@d.x}>#{n}</option>" }.join("").html_safe %>
+			<% options_y = (1..10).map { |n| "<option #{'selected=\'selected\'' if n==@d.y}>#{n}</option>" }.join("").html_safe %>
+			<%= select_tag :dim_x, options_x %>
+			<%= select_tag :dim_y, options_y %>
+			<%= submit_tag "Confirm", :class => "button-confirm" %>
+		</span>
+	<% end %>
+</div>
+	
 <%= form_tag(mat_path(@mat), :remote => true) do %>
-    
-	<%= text_field_tag(:val, 
-		@calc.mats[@mat.to_sym], 
-		:class => "symbol-input", :id => "field-1") %>
-		
+	<br/>
+	<table id="matrix-table">
+	  <% @d.y.times do |j| %>
+		<tr>
+		  <% @d.x.times do |i| %>
+			<td> <%= text_field_tag "val-#{i},#{j}",
+								   	(@mat_val ? @mat_val[i,j] : ""), 
+									:class => "symbol-input",
+								   	:id => "field-#{i},#{j}"%>
+			</td>
+		  <% end %>
+		</tr>
+	  <% end %>
+	</table>
+	
 	<div id="buttons">
 	  <%= submit_tag( "Save", :class => "button-normal" ) %>
 	  <%= submit_tag( "Clear", :class => "button-warn" ) %>

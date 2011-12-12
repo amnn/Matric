@@ -3,16 +3,22 @@
 <div id="flash"></div>
 
 <div id="sym-edit">
-Currently Editing: <span id="sym-name"><%= @var %></span>
+
+<div id="top-bar">
+	<span id="instructions">Currently Editing: <span id="sym-name"><%= @var %></span></span>
+</div>
+
 <%= form_tag(var_path(@var), :remote => true) do %>
-    <%= text_field_tag(:val, 
+	<%= text_field_tag(:val, 
 		@calc.vars[@var.to_sym], 
 		:class => "symbol-input", :id => "field-1") %>
+	
 	<div id="buttons">
 	  <%= submit_tag( "Save", :class => "button-normal" ) %>
 	  <%= submit_tag( "Clear", :class => "button-warn" ) %>
 	  <%= link_to "Cancel", root_path, :class => "button-cancel" %>
 	</div>
+
 <% end %>
 
 </div>

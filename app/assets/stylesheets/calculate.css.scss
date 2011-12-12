@@ -100,12 +100,22 @@
 #sym-edit
 {
 	width:640px;
-	height:100px;
 	margin-left:300px;
 	padding:20px;
+	padding-bottom:50px;
 	background-color:#fff;
 	color:#95b3d7;
 	font-size:16pt;
+}
+
+#top-bar
+{
+	width:100%;
+}
+
+#instructions
+{
+	float:left;
 }
 
 #sym-name
@@ -168,4 +178,44 @@
 {
 	text-decoration:none;
 	color:#333;
+}
+
+/* Matrix Edit Region Specific */
+
+#dimensions
+{
+	float:right;
+	font-size:10pt;
+}
+
+#dimensions select
+{
+	min-width:20px;
+	font-family:"Monaco", "Consolas", "Courier", monospace;
+	font-size:8pt;
+}
+
+#dimensions .button-confirm
+{
+	border:none;
+	background:transparent;
+	color:#666;
+	text-decoration:underline;
+}
+
+#dimensions .button-confirm:hover
+{
+	text-decoration:none;
+}
+
+
+#matrix-table
+{
+	margin:20px auto;
+}
+
+#matrix-table .symbol-input
+{
+	width:75%;
+	margin:0 12.5%;
 }

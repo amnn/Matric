@@ -8,7 +8,7 @@
 		<% val = @calc.vars[c.to_sym].nil? ? "" : @calc.vars[c.to_sym] %>
 		<li>
 		  <%=link_to(c, var_path(c))%>
-		  <span class="val" id="var-<%=c%>"><%=val%></span>
+		  <span class="val" id="var-<%=c%>"><%= truncate(val.to_s, :length => 25) %></span>
 		</li>
 		<% end %>
 	  </ul>
@@ -19,7 +19,7 @@
 		<% mat = @calc.mats[c.to_sym].nil? ? "" : @calc.mats[c.to_sym] %>
 		<li>
 		  <%=link_to(c, mat_path(c))%>
-		  <span class="val" id="mat-<%=c%>"><%=mat%></span>
+		  <span class="val" id="mat-<%=c%>"><%= truncate(mat.to_s, :length => 25) %></span>
 		</li>
 		<% end %>
 	  </ul>

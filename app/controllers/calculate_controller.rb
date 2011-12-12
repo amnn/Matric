@@ -7,10 +7,35 @@ class CalculateController < ApplicationController
   def matrix
     @mat = params[:id]
 
+    @verb = params[:commit]
+
+    case @verb
+    when "Save"
+
+    when "Clear"
+
+    when "Confirm" # Dimension change
+      @d = Dimension.new(params[:dim_x].to_i, params[:dim_y].to_i)
+      
+      
+    end
+
+    @calc.add_matrix "A", *Matrix.nice(3, 3).rows  # Debug purposes only
+
+    if @calc.mats[@mat.to_sym]
+      @d ||= @calc.mats[@mat.to_sym].val.dim
+    else
+      @d ||= Dimension.new(2,2)
+    end
+
+    @mat_val = @calc.mats[@mat.to_sym] ? rearrange_mat(@calc.mats[@mat.to_sym].val, @d)[0] : nil
+
     respond_to do |format|
       format.html
+      format.js { render "update_sym.js.coffee.erb" }
     end
   end
+
 
   def var
     @var = params[:id]
