@@ -58,7 +58,6 @@ class Calculation
         @calc = x               # Set it as the current calculation.
       when Numeric, Matrix      # If it is a numeric (or a matrix):
         @calc = Expression.new( x ) # Set it as the current calculation.
-        puts @calc.class
       end
 
       return true               # Succesful Parse
@@ -221,7 +220,7 @@ class Calculation
 
   def clear_matrix id
     # Check valid range
-    raise ArgumentError, "No such ID" if !('a'..'z').include?(id)
+    raise ArgumentError, "No such ID" if !('A'..'Z').include?(id)
 
     @mats[id.to_sym] = nil      # Set matrix to empty.
   end

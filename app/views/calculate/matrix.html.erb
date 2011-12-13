@@ -20,15 +20,19 @@
 </div>
 	
 <%= form_tag(mat_path(@mat), :remote => true) do %>
+
+	<%= hidden_field_tag :_dim_x, @d.x %>
+	<%= hidden_field_tag :_dim_y, @d.y %>
+
 	<br/>
 	<table id="matrix-table">
 	  <% @d.y.times do |j| %>
 		<tr>
 		  <% @d.x.times do |i| %>
 			<td> <%= text_field_tag "val-#{i},#{j}",
-								   	(@mat_val ? @mat_val[i,j] : ""), 
+								   	unparse_element(@mat_val ? @mat_val[i,j] : ""), 
 									:class => "symbol-input",
-								   	:id => "field-#{i},#{j}"%>
+								   	:id => "field-#{i}_#{j}"%>
 			</td>
 		  <% end %>
 		</tr>

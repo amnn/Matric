@@ -1,12 +1,12 @@
 
 <% @fields.each do |field, contents| %>
 
-$('#'+'<%= field %>').val( '<%= contents %>' )
+$('#<%= field %>').val( '<%= unparse_element(contents) %>' )
 
 <% end %>
 
 field = '#'+'<%= @type %>'+'-'+'<%= @type == "var" ? @var : @mat %>'
-value = '<%= @type == "var" ? @calc.vars[@var.to_sym] : @calc.mats[@mat.to_sym] %>'
+value = '<%= truncate((@type == "var" ? @calc.vars[@var.to_sym].to_s : @calc.mats[@mat.to_sym].to_s), :length => 25) %>'
 
 $(field).html(value)
 

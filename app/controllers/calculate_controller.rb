@@ -2,6 +2,7 @@ class CalculateController < ApplicationController
   include CalculateHelper
 
   def index
+    
   end
 
   def matrix
@@ -11,24 +12,66 @@ class CalculateController < ApplicationController
 
     case @verb
     when "Save"
-
+      if params[:_dim_x] && params[:_dim_y]
+        d = Dimension.new(params[:_dim_x].to_i, params[:_dim_y].to_i)
+        
+        rows = []
+        d.y.times { rows << [] }
+        
+        d.y.times do |j|
+        d.x.times do |i|
+          if (elem = parse_element(params["val-#{i},#{j}".to_sym]))
+            rows[j][i] = elem
+          else
+            flash[:msg] = "Save Failed!"
+            flash[:type] = "error"
+          end
+        end
+        end
+        
+        @calc.add_matrix @mat, *rows unless flash[:type] == "error"
+        
+        flash[:msg] ||= "Save Succesful!"
+        flash[:type] ||= "notice"
+        
+      end
     when "Clear"
-
+      
+      logger.debug @mat.class
+      
+      @calc.clear_matrix @mat
+      
+      flash[:msg] = "Clear Succesful!"
+      flash[:type] = "notice"
+      
+      d = Dimension.new(params[:_dim_x].to_i, params[:_dim_y].to_i)
+      rows = []
+      d.y.times { rows << [""]*d.y }
+      mat = Matrix[ *rows ]
+      
     when "Confirm" # Dimension change
       @d = Dimension.new(params[:dim_x].to_i, params[:dim_y].to_i)
-      
-      
     end
 
-    @calc.add_matrix "A", *Matrix.nice(3, 3).rows  # Debug purposes only
-
+    mat ||= @calc.mats[@mat.to_sym] ? @calc.mats[@mat.to_sym].val : nil
+    d   ||= @calc.mats[@mat.to_sym] ? mat.dim : Dimension.new(0,0)
+    
+    @fields = {}
+    @type = "mat"
+    
+    d.y.times do |j|
+    d.x.times do |i|
+      @fields["field-#{i}_#{j}"] = mat[i,j] rescue ""
+    end
+    end
+    
     if @calc.mats[@mat.to_sym]
       @d ||= @calc.mats[@mat.to_sym].val.dim
     else
       @d ||= Dimension.new(2,2)
     end
 
-    @mat_val = @calc.mats[@mat.to_sym] ? rearrange_mat(@calc.mats[@mat.to_sym].val, @d)[0] : nil
+    @mat_val = @calc.mats[@mat.to_sym] ? resize_mat(@calc.mats[@mat.to_sym].val, @d) : nil
 
     respond_to do |format|
       format.html
