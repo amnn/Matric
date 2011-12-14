@@ -3,7 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-#pane, #sym-edit { box-shadow:0px 5px 0px rgba(149,179,215,0.5); }
+#pane, #sym-edit, #calculation-edit, #answer-area, #error
+{ box-shadow:0px 5px 0px rgba(149,179,215,0.5); }
 
 /* Symbol Tray */
 
@@ -217,4 +218,73 @@
 {
 	width:75%;
 	margin:0 12.5%;
+}
+
+/* Calculation Screen */
+
+#calculation-edit
+{
+	width:640px;
+	margin-left:300px;
+	padding:20px;
+	background-color:#fff;
+	color:#95b3d7;
+	font-size:16pt;
+}
+
+#calculation-edit .symbol-input
+{
+	width:500px;
+	max-width:500px;
+	height:100px;
+	resize:none;
+}
+
+#calculation-edit .button-normal
+{
+	height:100px;
+	width:100px;
+	line-height:100px;
+	text-align:center;
+	vertical-align:bottom;
+}
+
+#answer-area
+{
+	width:680px;
+	margin:20px 0px 0px 300px;
+	background:#fff;
+	display:none;
+}
+
+#error
+{
+	width:640px;
+	margin:20px 0px 0px 300px;
+	padding:20px;
+	background:#c00;
+	color:#fff;
+	display:none;
+}
+
+#error em
+{
+	color:#faa;
+}
+
+#error p, pre
+{
+	font-family:"Monaco", "Consolas", "Courier", monospace;
+}
+
+.answer
+{
+	width:640px;
+	padding:5px 20px 5px 20px;
+	background:#eee;
+}
+
+pre
+{
+	color:#666;
 }

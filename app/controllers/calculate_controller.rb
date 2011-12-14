@@ -3,6 +3,34 @@ class CalculateController < ApplicationController
 
   def index
     
+    flash[:msg] = ""
+    
+    case params[:commit]
+    when "Calculate"
+      if @calc.parse(params[:calc])
+        flash[:msg] << "Parse Succesful! ... "
+        flash[:type] = "notice"
+        
+        begin
+          @final_expr = @calc.calculate
+          append = "Calculation Succesful!"
+        rescue => $error
+          append = "Calculation failed!"
+          flash[:type] = "error"
+        end
+        
+        flash[:msg] << append
+      else
+        
+        flash[:msg] << "Parse Failure! ... "
+        flash[:type] = "error"
+      end
+    end
+    
+    respond_to do |format|
+      format.html
+      format.js { render "calculation.js.coffee.erb" }
+    end
   end
 
   def matrix

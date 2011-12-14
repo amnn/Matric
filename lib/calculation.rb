@@ -51,13 +51,13 @@ class Calculation
     str.gsub! /(\[.*\])/, "Matrix\\1" # Implicit Matrices
 
     begin
-      x = eval(str)             # Evaluate the substituted string.
+      result = eval(str)        # Evaluate the substituted string.
 
-      case x                    # Check the evaluation.
+      case result               # Check the evaluation.
       when Expression           # If it is an expression:
-        @calc = x               # Set it as the current calculation.
+        @calc = result          # Set it as the current calculation.
       when Numeric, Matrix      # If it is a numeric (or a matrix):
-        @calc = Expression.new( x ) # Set it as the current calculation.
+        @calc = Expression.new( result ) # Set it as the current calculation.
       end
 
       return true               # Succesful Parse

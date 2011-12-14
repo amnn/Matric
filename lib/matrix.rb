@@ -468,7 +468,7 @@ class Matrix
       elem   = 0                # Define and initialise accumulator variable.
 
       # Initialise element array with correct number of (empty) rows.
-      dim_y.x.times { rows_z << [] }
+      dim_x.x.times { rows_z << [] }
 
       dim_x.y.times do |r|      # For each row in self:
       dim_y.x.times do |c|      # Iterate through every column in mat_y:

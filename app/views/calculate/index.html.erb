@@ -1,2 +1,16 @@
 <%= render "variable_pane" %>
-and some text to boot.
+
+<div id="flash"></div>
+
+<div id="calculation-edit">
+	<%= form_tag( root_path, :remote => true) do %>
+		<%= text_area_tag :calc, "", :class => "symbol-input" %>
+		<%= submit_tag "Calculate", :class => "button-normal" %>
+	<% end %>
+</div>
+<div id="error">Error field</div>
+<div id="answer-area">
+	
+	Final Answer
+	<div class="final answer"></div>
+</div>
