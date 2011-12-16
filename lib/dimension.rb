@@ -1,0 +1,1 @@
+Dimension = Struct.new(:x, :y)
