@@ -316,7 +316,7 @@ class Expression < Numeric
 
       # Addition of two matrices
       if Mat === @l_oper && Mat === @r_oper
-        return Mat.new( (@l_oper.val + @r_oper.val).simplify )
+        return Mat.new( (@l_oper.val + @r_oper.val) ).simplify
       end
 
       # Addition with the addition unit
@@ -360,7 +360,7 @@ class Expression < Numeric
 
       # Subtraction of two matrices
       if Mat === @l_oper && Mat === @r_oper
-        return Mat.new( (@l_oper.val - @r_oper.val).simplify )
+        return Mat.new( @l_oper.val - @r_oper.val ).simplify
       end
 
       if @l_oper == Const.new( 0 )    # Subtraction from 0 (Negation)
@@ -470,7 +470,7 @@ class Expression < Numeric
       end
 
       if Mat === @l_oper
-        return Mat.new( (@l_oper.val * (1.0/@r_oper)).simplify )
+        return Mat.new( @l_oper.val * (1.0/@r_oper) ).simplify
       end
 
       if @l_oper == Const.new( 0 )    # Division of 0

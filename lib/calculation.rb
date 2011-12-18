@@ -48,7 +48,7 @@ class Calculation
   def parse str
 
     _str = str
-    str.gsub! /(\[.*\])/, "Matrix\\1" # Implicit Matrices
+    str.gsub! /(\[\[[^\[\]]+\](?:,\[[^\[\]]+\])\])/, "Matrix\\1" # Implicit Matrices
 
     begin
       result = eval(str)        # Evaluate the substituted string.
