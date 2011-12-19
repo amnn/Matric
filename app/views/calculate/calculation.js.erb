@@ -1,0 +1,27 @@
+<% if $error %>
+$('#error').html("<em>Error Details</em><p><%= $error.to_s.gsub(/\n/, '<br />').html_safe %></p>");
+$('#error').slideDown('normal');
+<% $error = nil %>
+<% else %>
+$('#error').slideUp('normal');
+<% end %>
+
+$('#ans').html('<%= truncate(@calc.ans.to_s, :length => 12 ) %>');
+
+answer = $('#answer-area');
+
+answer.slideUp('normal');
+
+<% if @final_expr %>
+$('#answer-area').html("<%= display_step(@final_expr).html_safe %>");
+<% end %>
+
+<% unless flash[:type] == "error" %>
+answer.slideDown('normal');
+<% end %>
+
+flash = $('#flash');
+
+flash.removeClass().addClass('<%= flash[:type] %>');
+flash.html('<%= flash[:msg] %>');
+flash.slideDown('normal');
