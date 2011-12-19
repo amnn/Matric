@@ -1,7 +1,9 @@
+Steps = Struct.new(:instructions, :result, :further_steps)
+
 class Expression::UnOp
   
   def steps
-    return @val.responds_to?(:steps) ? @val.steps : []
+    return @val.respond_to?(:steps) ? @val.steps : []
   end
   
 end
@@ -21,12 +23,22 @@ class Expression::Inverse
   def steps
     the_steps = []
     
-    the_steps << ["Calculate the determinant", @val.det.simplify]
-    the_steps << ["If the determinant is 0, The matrix cannot be inverted", nil]
+    value       = @val.simplify
+    determinant = value.det.simplify
     
-    unless the_steps[0][1] == 0
-      the_steps << ["Calculate the cofactors matrix", @val.cofactors.simplify ]
-      the_steps << ["Multiply the determinant with the cofactors matrix", the_steps[0][1]*the_steps[3][1]]
+    the_steps << Steps["Invert matrix", value.display, nil]
+    
+    the_steps << Steps["Calculate the Determinant", determinant, value.det.steps]
+    
+    the_steps << Steps["If the determinant is 0, The matrix cannot be inverted", nil]
+    
+    unless determinant == 0
+      
+      cofactors = value.cofactors.simplify
+      inverted  = ((1.0/determinant)*cofactors).simplify
+      
+      the_steps << Steps["Calculate the cofactors matrix", cofactors.display, value.cofactors.steps]
+      the_steps << Steps["Multiply the reciprocal of the determinant with the cofactors matrix", inverted.display, nil]
     end
     
     the_steps

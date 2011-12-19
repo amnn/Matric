@@ -41,5 +41,24 @@ module CalculateHelper
     
     return Matrix[ *rows ]
   end
+  
+  def display_step step
+
+      step_string = "" 
+
+      step_string << "<div class=\\'instruction\\'>"
+      step_string << step.instructions                         if step.instructions
+      step_string << " <a class=\\'show-step\\'>Show Further Steps</a>" if step.further_steps
+      step_string << "</div>"
+
+      if step.result
+        step_string << "<div class=\\'answer\\'>"
+        step_string << "<pre>#{step.result.gsub(/\n/, '<br/>')}</pre>"
+        step_string << "</div>"
+      end
+
+      step_string
+    end
+  
 
 end

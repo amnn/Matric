@@ -146,6 +146,10 @@ class Expression < Numeric
       @val = @val.map &block
       self
     end
+    
+    def display
+      @val.display
+    end
 
   end
 
@@ -206,7 +210,13 @@ class Expression < Numeric
     def apply
       case @val
       when Mat
-        return @val.val.inverse.simplify
+        
+        unless @val.det.simplify == 0
+          return @val.val.inverse.simplify
+        else
+          raise SingularMatrixError.new(@val.val), "Attempted to invert a singular matrix"
+        end
+        
       else
         self
       end
@@ -464,6 +474,13 @@ class Expression < Numeric
     end
 
     def apply
+      
+      if @l_oper == Const.new( 0 )    # Division of 0
+        return Const.new( 0 )         # 0/a = 0
+      elsif @r_oper == Const.new( 0 ) # Division by 0 (MATHEMATICALLY UNDEFINED)
+        raise ZeroDivisionError, "Cannot divide #{ @l_oper } by 0"
+      end
+      
       # Divison of two constants
       if Const === @l_oper && Const === @r_oper
         return Const.new( @l_oper.val.to_f / @r_oper.val )
@@ -471,12 +488,6 @@ class Expression < Numeric
 
       if Mat === @l_oper
         return Mat.new( @l_oper.val * (1.0/@r_oper) ).simplify
-      end
-
-      if @l_oper == Const.new( 0 )    # Division of 0
-        return Const.new( 0 )         # 0/a = 0
-      elsif @l_oper == Const.new( 0 ) # Division by 0 (MATHEMATICALLY UNDEFINED)
-        raise ZeroDivisionError, "Cannot divide #{ @l_oper } by 0"
       end
 
       if @r_oper == Const.new( 1 ) # Division by 1
@@ -682,6 +693,10 @@ class Expression < Numeric
 
   def simplify
     self
+  end
+
+  def display
+    to_s
   end
 
   def paren_op_show l, op, r

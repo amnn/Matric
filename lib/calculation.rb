@@ -48,7 +48,9 @@ class Calculation
   def parse str
 
     _str = str
-    str.gsub! /(\[\[[^\[\]]+\](?:,\[[^\[\]]+\])\])/, "Matrix\\1" # Implicit Matrices
+    
+    # Implicit Matrices
+    str.gsub! /(\[\[[^\[\]]+\](?:,\[[^\[\]]+\])*\])/, "Expression.new(Matrix\\1)" 
 
     begin
       result = eval(str)        # Evaluate the substituted string.
@@ -61,7 +63,7 @@ class Calculation
       end
 
       return true               # Succesful Parse
-    rescue => $error
+    rescue Exception => $error
       $strs = [_str, str]
       return false              # Failed Parse
     end
@@ -70,6 +72,14 @@ class Calculation
 
   def calculate
 
+    calc_sub = subd_calc()
+
+    @ans = calc_sub.simplify    # Simplify calculation, and set as answer.
+    
+    return Steps["Final Answer", @ans.display , calc_sub.steps ]
+  end
+
+  def subd_calc
     vars_com = @vars.select { |k,v| !v.nil? } # Remove nil subs in variables.
 
     mats_sub = @mats.merge(@mats) do |key, value|
@@ -83,16 +93,13 @@ class Calculation
 
     mats_sub.select! { |k,v| !v.nil? } # Remove nil valued matric substitutions.
 
-    puts @calc
-
     calc_sub = @calc.sub(:"&" => @ans ) # Substitute answer variable.
     calc_sub = calc_sub.sub( mats_sub ) # Substitute matrices.
     calc_sub = calc_sub.sub( vars_com ) # Substitute variables.
-
-    @ans = calc_sub.simplify    # Simplify calculation, and set as answer.
-
-    @ans                        # Return answer.
+    
+    return calc_sub
   end
+    
 
   def save_state
     str = ""                    # Initialise string.

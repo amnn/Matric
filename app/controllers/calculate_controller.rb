@@ -4,16 +4,20 @@ class CalculateController < ApplicationController
   def index
     
     flash[:msg] = ""
-    
     case params[:commit]
     when "Calculate"
       if @calc.parse(params[:calc])
         flash[:msg] << "Parse Succesful! ... "
         flash[:type] = "notice"
-        
         begin
           @final_expr = @calc.calculate
           append = "Calculation Succesful!"
+          
+        rescue SingularMatrixError
+          append = "Calculation Succesful!"
+          
+          @final_expr = Steps["No Final Answer. Attempted to invert singular matrix.", nil, @calc.subd_calc.steps ]
+          
         rescue => $error
           append = "Calculation failed!"
           flash[:type] = "error"
@@ -29,7 +33,7 @@ class CalculateController < ApplicationController
     
     respond_to do |format|
       format.html
-      format.js { render "calculation.js.coffee.erb" }
+      format.js { render "calculation.js.erb" }
     end
   end
 
@@ -64,8 +68,6 @@ class CalculateController < ApplicationController
         
       end
     when "Clear"
-      
-      logger.debug @mat.class
       
       @calc.clear_matrix @mat
       
