@@ -1,2 +1,28 @@
-<h1>Test#setup</h1>
-<p>Find me in app/views/test/setup.html.erb</p>
+<% if flash[:msg] %>
+<div id="test-flash" class="default-on <%= flash[:type]%>"><%= flash[:msg] %></div>
+<% end %>
+
+<div id="setup-screen">
+	<div id="topic-choice">
+		<ul>
+		<% topics.each do |topic| %>
+			<li class="topic <%= (topic_defaults.include? topic) ? 'on' : ''%>"><%= topic %></li>
+		<% end %>
+		</ul>
+	</div>
+	<div id="test-choice">
+		<ul>
+		<% types.each do |type| %>
+			<li class="test-type <%= (type_default == type) ? 'on' : ''%>"><%= type %></li>
+		<% end %>
+		</ul>
+		
+		<%= form_tag test_question_path do %>
+			<%= hidden_field_tag :_topics, "", :id => "test-topics" %>
+			<%= hidden_field_tag :_type, "", :id => "test-type" %>
+			<div id="test-buttons">
+				<%= submit_tag "Go", :class => "button-go" %>
+			</div>
+		<% end %>
+	</div>
+</div>

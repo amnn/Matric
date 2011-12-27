@@ -1,13 +1,13 @@
 module CalculateHelper
 
   def is_numeric x
-    /^\d+(?:\.\d+)?$/ =~ x
+    /^\-?\d+(?:\.\d+)?$/ =~ x
   end
   
   def parse_element x
     c = Calculation.new
     if c.parse(x)
-      return c.calculate
+      return c.subd_calc.simplify
     else
       return nil
     end
@@ -48,7 +48,7 @@ module CalculateHelper
 
       step_string << "<div class=\\'instruction\\'>"
       step_string << step.instructions                         if step.instructions
-      step_string << " <a class=\\'show-step\\'>Show Further Steps</a>" if step.further_steps
+      step_string << " <a class=\\'show-step\\'>Show Further Steps</a>" if step.further_steps && step.further_steps != []
       step_string << "</div>"
 
       if step.result
@@ -57,8 +57,17 @@ module CalculateHelper
         step_string << "</div>"
       end
 
+      if step.further_steps && step.further_steps != []
+        step_string << "<div class=\\'further-step\\'>"
+        step_string << step.further_steps.map { |step| display_step(step) }.join("")
+        step_string << "</div>"
+      end
+
       step_string
     end
   
-
+  def validate_state_file contents
+    return false if /^(?:.*\n){52}$/ !~ contents
+    contents.split("\n")[0...26].map { |x| x == "" || !(is_numeric x).nil? }.inject(true) { |t,b| t && b }
+  end
 end

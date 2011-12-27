@@ -233,10 +233,10 @@ class Expression < Numeric
     def apply
       case @val
       when Mat
-        d = @val.val.det.simplify
+        d = @val.val.det
         case d
         when Expression
-          return d
+          return d.simplify
         when Numeric
           return Const.new( d )
         end

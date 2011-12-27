@@ -158,5 +158,33 @@ class CalculateController < ApplicationController
       end
     end
   end
+  
+  def load
+    
+    if params[:commit] == "Load" && params[:state]
+      
+      #begin
+        
+          contents = params[:state][:file].read
+          
+          if validate_state_file contents
+            @calc.load_state contents
+            flash[:msg]  = "Loaded State From File Succesfully!"
+            flash[:type] = "notice"
+          end
+        
+      #ensure
+        
+        flash[:msg]  ||= "Failed to Load Sate From File!"
+        flash[:type] ||= "error"
+        
+      #end
+      
+    end
+    
+    respond_to do |format|
+      format.html
+    end
+  end
 
 end

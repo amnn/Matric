@@ -1,2 +1,6 @@
-<h1>Test#mc</h1>
-<p>Find me in app/views/test/mc.html.erb</p>
+<div id="question-area">
+	<%= render "question", :topic => @topic, :q => @question, :a => @answer %>
+</div>
+
+<%= @answer %>
+<%= choices_for 4, @answer %>

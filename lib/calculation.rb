@@ -50,7 +50,7 @@ class Calculation
     _str = str
     
     # Implicit Matrices
-    str.gsub! /(\[\[[^\[\]]+\](?:,\[[^\[\]]+\])*\])/, "Expression.new(Matrix\\1)" 
+    str.gsub! /(\[(?:\[[^\[\]]+\](?:,\[[^\[\]]+\])*)?\])/, "Expression.new(Matrix\\1)" 
 
     begin
       result = eval(str)        # Evaluate the substituted string.
@@ -111,6 +111,15 @@ class Calculation
   end
 
   def load_state str
+    
+    # Reset everything
+    
+    ('a'..'z').each do |c|
+      clear_var c
+      clear_matrix c.upcase
+    end
+    
+    expr_parser = Calculation.new
     i = 0                       # Initialise counter variable.
 
     str.each_line do |l|        # Iterate through every line in the file:
@@ -126,11 +135,12 @@ class Calculation
           num = nil             # Set the number to empty.
 
         end
-
+      
+        puts num
         # Calculate char's ASCII code.
         # Convert to a character, and then a symbol.
         # Set the value for the symbol in the variables list as num.
-        @vars[(97+i).chr.to_sym] = num
+       add_var (97+i).chr, num unless num.nil?
 
       else                      # Record numbers greater than 26 are for mats:
 
@@ -138,40 +148,35 @@ class Calculation
 
         # Check line not empty & fits matrix pattern (enclosed in [ ]):
         if l != "" && /^\[(.+)\]$/ =~ l
-
           rows = []             # Initialise rows for matrix.
           capture = $1          # Store the contents within the [ ].
 
           # Check for further square brackets within the contents.
           # For each square bracket, add the string of the contents to rows.
           capture.gsub(/\[([^\[\]]+)\]/) { |m| rows << $1 }
-
           # Split each row in strings across the commas.
           # This creates the string representations of the elements.
           rows.map! { |r| r.split ", " }
           mat_str = Matrix[ *rows ] # Initialise a matrix with these elements.
 
           mat = mat_str.map do |elem| # Iterate through each of these elements.
-
-            case elem           # Check the element:
-            when /^[a-z]$/      # If it is a single character.
-              Expression.new( elem ) # Create an expression from it (a var).
-            when /^\d+$/        # If it is a arbitrary length string of numbers.
-              Expression.new( elem.to_i ) # Create an expression (an int const).
-            when /^\d+\.\d+$/   # If it also has a single . in it.
-              Expression.new( elem.to_f ) # Create expression (a float const).
+            if expr_parser.parse(elem.gsub(/[a-z]{2,}/) {|cs| cs.split("").join("*")})
+              expr_parser.subd_calc
+            else
+              Expression.new(0)
             end
-
           end
 
         else                    # If line was empty or did not match pattern:
           mat = nil             # Set matrix to empty.
         end
 
+        puts mat
+
         # Calculate char's ASCII code using _i (not i).
         # Convert to a character, and then a symbol.
         # Set the value for the symbol in the matrices list as mat.
-        @mats[(65+_i).chr.to_sym] = mat
+        add_matrix (65+_i).chr, *mat.rows unless mat.nil?
       end
 
       i += 1                    # Increment counter.

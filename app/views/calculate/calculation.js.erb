@@ -16,6 +16,19 @@ answer.slideUp('normal');
 $('#answer-area').html("<%= display_step(@final_expr).html_safe %>");
 <% end %>
 
+$('.show-step').click(function(){
+	
+	if( $(this).html() == "Show Further Steps") {
+		$(this).parent().next().next().slideDown('normal');
+		$(this).parent().next().slideUp('normal');
+		$(this).html("Hide Further Steps");
+	} else {
+		$(this).parent().next().next().slideUp('normal');
+		$(this).parent().next().slideDown('normal');
+		$(this).html("Show Further Steps");
+	}
+});
+
 <% unless flash[:type] == "error" %>
 answer.slideDown('normal');
 <% end %>

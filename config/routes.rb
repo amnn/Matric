@@ -8,12 +8,12 @@ Matric::Application.routes.draw do
   match "save" => "calculate#save",
         :defaults => { :format => 'text' }, :as => :save
 
+  match "load" => "calculate#load", :as => :load, :via => [:get, :post]
+
+  match "test/setup" => "test#setup", :as => :test_setup, :via => [:get, :post]
+  match "test/q" => "test#test", :as => :test_question, :via => [:get, :post]
 
   get "test/setup"
-
-  get "test/mc"
-
-  get "test/ff"
 
   get "calculate/index"
 

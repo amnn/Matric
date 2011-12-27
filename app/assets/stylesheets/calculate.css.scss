@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-#pane, #sym-edit, #calculation-edit, #answer-area, #error
+#pane, #sym-edit, #calculation-edit, #answer-area, #error, #load-pane
 { box-shadow:0px 5px 0px rgba(149,179,215,0.5); }
 
 /* Symbol Tray */
@@ -84,6 +84,11 @@
 	display:none;
 }
 
+#flash.default-on
+{
+	display:block;
+}
+
 #flash.notice
 {
 	background:#9f3;
@@ -96,6 +101,23 @@
 	color:#fff;
 }
 
+/* Load Screen */
+
+#load-pane
+{
+	width:640px;
+	margin-left:300px;
+	padding:20px;
+	padding-bottom:50px;
+	background-color:#fff;
+	color:#95b3d7;
+	font-size:16pt;
+}
+
+#load-pane .symbol-input
+{
+	height:inherit;
+}
 /* Variable Edit Region */
 
 #sym-edit
@@ -279,7 +301,9 @@
 
 .instruction
 {
-	width:640px;
+	font-style:italic;
+	font-size:11pt;
+	width:auto;
 	padding:5px 20px 5px 20px;
 }
 
@@ -295,9 +319,16 @@
 	text-decoration:underline;
 }
 
+.further-step
+{
+	padding-left:20px;
+	width:auto;
+	display:none;
+}
+
 .answer
 {
-	width:640px;
+	width:auto;
 	padding:5px 20px 5px 20px;
 	background:#eee;
 	text-align:center;

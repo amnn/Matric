@@ -1,3 +1,170 @@
 // Place all the styles related to the Test controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Flash */
+
+#test-flash
+{
+	width:960px;
+	padding:5px 20px;
+	margin:0 auto;
+	display:none;
+}
+
+#test-flash.default-on
+{
+	display:block;
+}
+
+#test-flash.notice
+{
+	background:#9f3;
+	color:#5c991f;
+}
+
+#test-flash.error
+{
+	background:#c00;
+	color:#fff;
+}
+
+/* Setup */
+
+#setup-screen
+{
+	width:1000px;
+	margin:0 auto;
+	background:#fff;
+}
+
+#topic-choice, #test-choice, #question-area
+{ box-shadow:0px 5px 0px rgba(149,179,215,0.5); }
+
+/* Topics */
+
+#topic-choice
+{
+	background:#fff;
+	float:left;
+	width:560px;
+	height:350px;
+	padding:20px;
+}
+
+#topic-choice ul
+{
+	list-style:none;
+}
+
+#topic-choice ul li
+{
+	display:block;
+	cursor:pointer;
+	border:solid 2px #ccc;
+	background:#eee;
+	color:#666;
+	width:300px;
+	padding:5px;
+	margin:20px 0px;
+	font-size:16pt;
+}
+
+#topic-choice ul li.on
+{
+	background:#666;
+	color:#fff;
+	padding:7px;
+	border:none;
+}
+
+/* Test Types */
+
+#test-choice
+{
+	border:solid 2px #ccc;
+	width:356px;
+	height:346px;
+	padding:20px;
+	float:right;
+	position:relative;
+	background:#eee;
+}
+
+#test-choice ul
+{
+	list-style:none;
+}
+
+#test-choice ul li
+{
+	display:block;
+	cursor:pointer;
+	border:solid 2px #000;
+	background:#333;
+	color:#eee;
+	width:200px;
+	padding:5px;
+	margin:20px 0px;
+	font-size:16pt;
+}
+
+#test-choice ul li.on
+{
+	background:#fff;
+	color:#666;
+	padding:7px;
+	border:none;
+}
+
+/* Submit Button */
+
+#test-buttons 
+{
+	margin:10px;
+	position:absolute;
+	bottom:0px;
+	right:0px;
+}
+
+.button-go
+{
+	border:none;
+	padding:5px;
+	margin:5px;
+	cursor:pointer;
+	font-size:12pt;
+	background:#9f3;
+	color:#360;
+}
+
+.button-go:hover
+{
+	background:#3f0;
+}
+
+/* Question */
+
+pre, pre *
+{
+	font-family:"Monaco", "Consolas", "Courier", monospace;
+}
+
+.question-text
+{
+	font-size:14pt;
+	font-style:italic;
+}
+
+#question-area
+{
+	width:640px;
+	padding:20px;
+	background:#fff;
+	margin:0 auto;	
+}
+
+#question-area table
+{
+	margin:0 auto;
+}

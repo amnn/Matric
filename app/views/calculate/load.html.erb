@@ -1,0 +1,15 @@
+<%= render "variable_pane"%>
+	<div id="flash" class="default-on <%= flash[:type] %>">
+		<%= flash[:msg] %>
+	</div>
+
+<div id="load-pane">
+	<%= form_tag load_path, :multipart => true do %>
+		<%= file_field :state, :file, :accept => "text/plain", :class => "symbol-input" %>
+		
+		<div id="buttons">
+			<%= submit_tag "Load", :class => "button-normal" %>
+			<%= link_to "Cancel", root_path, :class => "button-cancel" %>
+		</div>
+	<% end %>
+</div>
