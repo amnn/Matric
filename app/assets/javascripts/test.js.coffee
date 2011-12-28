@@ -28,5 +28,25 @@ update_test_type_field = ->
 	$("#test-type").val field
 
 
+options_setup = ->
+	$("#option-area ul li").click ->
+		if $("#option-area ul li.correct, #option-area ul li.incorrect").size() == 0
+			check_answer this
+
+check_answer = (elem) ->
+	real_digest = hex_md5 $(elem).html()
+	test_digest = $("#test_digest").val()
+	
+	$("#option-area ul li").each (i) ->
+		digest = hex_md5 $(this).html()
+		
+		if test_digest is digest
+			$(this).removeClass().addClass "correct"
+			unless digest is real_digest
+				$(elem).removeClass().addClass "incorrect"
+			
+		
+		
 $(document).ready topics_setup
 $(document).ready test_type_setup
+$(document).ready options_setup

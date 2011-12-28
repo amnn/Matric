@@ -1,6 +1,5 @@
-<div id="question-area">
-	<%= render "question", :topic => @topic, :q => @question, :a => @answer %>
-</div>
-
-<%= @answer %>
-<%= choices_for 4, @answer %>
+<%= render "question", :topic => @topic, :q => @question, :a => @answer %>
+<%= render "options", :choices => choices_for(4, @answer) %>
+<%= render "question_buttons", :a => @answer, 
+							   :topics => @topics, 
+							   :type => @type %>

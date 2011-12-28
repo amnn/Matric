@@ -168,3 +168,70 @@ pre, pre *
 {
 	margin:0 auto;
 }
+
+/* Answer (Multiple Choice) */
+
+#option-area
+{
+	width:640px;
+	margin:0 auto;
+	padding-top:20px;
+}
+
+#option-area ul
+{
+	list-style:none;
+}
+
+#option-area ul li
+{
+	width:30%;
+	float:left;
+	margin:0 5% 20px 5%;
+	padding:5%;
+	height:20px;
+	background:#fff;
+	box-shadow:0px 5px 0px rgba(149,179,215,0.5);
+}
+
+#option-area ul li:hover
+{
+	background:#95b3d7;
+	color:#e4ecf6;
+}
+
+#option-area ul li.correct
+{
+	background:#9c3;
+	color:#360;
+}
+
+#option-area ul li.incorrect
+{
+	background:#900;
+	color:#fff;
+}
+
+#option-area ul li.correct:hover, #option-area ul li.incorrect:hover
+{}
+
+	
+#test-question-buttons
+{
+	width:640px;
+	margin:0 auto;
+	padding-top:20px;
+	clear:both;
+}
+
+.button-next
+{
+	border:none;
+	padding:5px;
+	margin:5px;
+	cursor:pointer;
+	font-size:12pt;
+	background:#9f3;
+	color:#360;
+	float:right;
+}

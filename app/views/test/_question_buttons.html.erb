@@ -1,0 +1,13 @@
+<div id="test-question-buttons">
+	<%=form_tag test_question_path do %>
+	
+	<%= hidden_field_tag "test_digest",
+						 Digest::MD5.hexdigest(a.to_s),
+						 :id => "test_digest" %>
+	
+	<%= hidden_field_tag "_topics", topics %>
+	<%= hidden_field_tag "_type", type %>
+	
+	<%= submit_tag "Next", :class => "button-next" %>
+	<% end %>
+</div>

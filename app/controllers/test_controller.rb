@@ -25,8 +25,8 @@ class TestController < ApplicationController
         redirect_to test_setup_path and return
       end
       
-      topics = params[:_topics].chomp.split " "
-      @topic = topics.sample
+      @topics = params[:_topics].chomp.split " "
+      @topic = @topics.sample
       
       @question = Question.new(@topic, params[:_type])
       
@@ -39,6 +39,7 @@ class TestController < ApplicationController
       end
       
       @answer ||= @question.ans
+      @type = params[:_type]
       
       respond_to do |format|
         format.html { render test_template }

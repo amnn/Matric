@@ -1,44 +1,45 @@
 <% unary_operator = (q.operands.length == 1) %>
 <% matric_answer  = (Matrix === q.ans ) %>
 <% display_answer = (q.type == "Multiple-Choice" && matric_answer) %>
-
-<span class="question-text">Consider the following <%= topic.downcase.gsub(/s$/, "") %>:</span>
-<pre>
-<table>
-	<tr>
-		
-	<% if unary_operator %>
-		<td><%= q.op %>(</td>
-	<% end %>
-		
-	<% first = true %>
-	<% q.operands.each do |operand| %>
-	
-		<% unless first %>
-		<td><%= q.op.to_s %></td>
-		<% end %>
-		<% first = false %>
-		
-		<td><%= Expression.new( operand ).display.gsub(/\n/, "<br/>").html_safe %></td>
-		
-	<% end %>
-	
-	<% if unary_operator %>
-		<td>)</td>
-	<% end %>
-	
-	<% if display_answer %>
-		<td> = </td>
-		<td><%= Expression.new( q.ans ).display.gsub(/\n/, "<br/>").html_safe %></td>
-	<% end %>
-	
-	</tr>
-</table>
-</pre>
-<span class="question-text">
-<% if display_answer %>
-	What is the value of <pre style="display:inline;">a</pre>?
-<% else %>
-	What is its value?
-<% end %>
-</span>
+<div id="question-area">
+    <span class="question-text">Consider the following <%= topic.downcase.gsub(/s$/, "") %>:</span>
+    <pre>
+    <table>
+    	<tr>
+    		
+    	<% if unary_operator %>
+    		<td><%= q.op %>(</td>
+    	<% end %>
+    		
+    	<% first = true %>
+    	<% q.operands.each do |operand| %>
+    	
+    		<% unless first %>
+    		<td><%= q.op.to_s %></td>
+    		<% end %>
+    		<% first = false %>
+    		
+    		<td><%= Expression.new( operand ).display.gsub(/\n/, "<br/>").html_safe %></td>
+    		
+    	<% end %>
+    	
+    	<% if unary_operator %>
+    		<td>)</td>
+    	<% end %>
+    	
+    	<% if display_answer %>
+    		<td> = </td>
+    		<td><%= Expression.new( q.ans ).display.gsub(/\n/, "<br/>").html_safe %></td>
+    	<% end %>
+    	
+    	</tr>
+    </table>
+    </pre>
+    <span class="question-text">
+    <% if display_answer %>
+    	What is the value of <pre style="display:inline;">a</pre>?
+    <% else %>
+    	What is its value?
+    <% end %>
+    </span>
+</div>
