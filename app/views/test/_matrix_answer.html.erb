@@ -1,0 +1,37 @@
+<% d = a.dim %>
+<div id="freeform-answer-area">
+<%= form_tag do %>
+	<table id="matrix-table">
+	  <% d.y.times do |j| %>
+		<tr>
+		  <% d.x.times do |i| %>
+			<td> <%= text_field_tag "val-#{i},#{j}",
+								   	unparse_element(@mat_val ? @mat_val[i,j] : ""), 
+									:class => "symbol-input",
+								   	:id => "field-#{i}_#{j}"%>
+			</td>
+		  <% end %>
+		</tr>
+	  <% end %>
+	</table>
+	
+	<div id="buttons">
+	  <%= link_to( "Check", "#", :class => "button-normal", :id => "check-button" ) %>
+	</div>
+<% end %>
+
+<%= form_tag do %>
+
+<%= hidden_field_tag "_dim_x", d.x %>
+<%= hidden_field_tag "_dim_y", d.y %>
+
+<% d.y.times do |j| %>
+<% d.x.times do |i| %>
+	<%= hidden_field_tag "digest-#{i}_#{j}",
+ 						 Digest::MD5.hexdigest(a[i,j].to_i.to_s)%>
+<% end %>
+<% end %>
+
+<% end %>
+
+</div>

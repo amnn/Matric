@@ -26,19 +26,27 @@ class TestController < ApplicationController
       end
       
       @topics = params[:_topics].chomp.split " "
-      @topic = @topics.sample
+      @topic  = @topics.sample
       
       @question = Question.new(@topic, params[:_type])
       
       case params[:_type]
       when "Multiple-Choice"
         test_template = "mc.html.erb"
-        @answer        = @question.random_sub :a
+        @answer       = @question.random_sub(:a)
       when "Free-Form"
         test_template = "ff.html.erb"
       end
       
       @answer ||= @question.ans
+      
+      @answer = case @answer
+      when Matrix
+        Matrix[ *@answer.map(&:to_i).rows ]
+      when Numeric
+        @answer.to_i
+      end
+      
       @type = params[:_type]
       
       respond_to do |format|

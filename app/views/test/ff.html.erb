@@ -1,3 +1,9 @@
-<div id="question-area">
-	<%= render "question", :topic => @topic, :q => @question, :a => @answer %>
-</div>
+<%= render "question", :topic => @topic, :q => @question, :a => @answer %>
+
+<% if Matrix === @answer %>
+<%= render "matrix_answer", :a => @answer %>
+<% else %>
+<%= render "single_answer", :a => @answer %>
+<% end %>
+
+<%= render "question_buttons", :topics => @topics, :type => @type %>

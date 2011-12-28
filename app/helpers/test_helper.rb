@@ -28,7 +28,7 @@ module TestHelper
     ]
     
     until choices.length == n
-      (choices << modifiers.sample[ans]).uniq!
+      (choices << modifiers.sample[ans]).map!(&:to_i).uniq!
     end
     choices.shuffle
   end

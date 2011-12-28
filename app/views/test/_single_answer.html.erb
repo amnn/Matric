@@ -1,0 +1,19 @@
+<div id="freeform-answer-area">
+	<%= form_tag do %>
+	
+	<%= text_field_tag "answer", "", :class => "symbol-input", :id => "field-0_0" %>
+	
+	<div id="buttons">
+		<%= link_to "Check", "#", :class => "button-normal", :id => "check-button" %>
+	</div>
+	
+	<% end %>
+	
+	<%= form_tag do %>
+	<%= hidden_field_tag "_dim_x", 1 %>
+	<%= hidden_field_tag "_dim_y", 1 %>
+	
+	<%= hidden_field_tag "digest-0_0",
+						 Digest::MD5.hexdigest(a.to_i.to_s) %>
+	<% end %>
+</div>

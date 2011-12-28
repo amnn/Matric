@@ -1,5 +1,4 @@
 <%= render "question", :topic => @topic, :q => @question, :a => @answer %>
-<%= render "options", :choices => choices_for(4, @answer) %>
-<%= render "question_buttons", :a => @answer, 
-							   :topics => @topics, 
+<%= render "options", :choices => choices_for(4, @answer), :a => @answer %>
+<%= render "question_buttons", :topics => @topics, 
 							   :type => @type %>

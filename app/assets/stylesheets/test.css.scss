@@ -215,7 +215,58 @@ pre, pre *
 #option-area ul li.correct:hover, #option-area ul li.incorrect:hover
 {}
 
-	
+/* Answer (Free Form) */
+
+#freeform-answer-area
+{
+	width:640px;
+	margin:0 auto;
+	margin-top:20px;
+	padding:20px;
+	padding-bottom:50px;
+	background:#fff;
+	box-shadow:0px 5px 0px rgba(149,179,215,0.5);
+}
+
+#freeform-answer-area .symbol-input.correct
+{
+	background:#9c3;
+	color:#360;
+	border:2px solid #360;
+}
+
+#freeform-answer-area .symbol-input.incorrect
+{
+	background:#900;
+	color:#fff;
+	border:2px solid #fff;
+}
+
+#freeform-answer-area #buttons
+{
+	padding-top:10px;
+}
+
+#freeform-answer-area #buttons a
+{
+	text-decoration:none;
+}
+
+/* Matrix Answer */
+
+#matrix-table
+{
+	margin:20px auto;
+}
+
+#matrix-table .symbol-input
+{
+	width:75%;
+	margin:0 12.5%;
+}
+
+/* Test Buttons */
+
 #test-question-buttons
 {
 	width:640px;
@@ -234,4 +285,23 @@ pre, pre *
 	background:#9f3;
 	color:#360;
 	float:right;
+	box-shadow:0px 5px 0px rgba(149,179,215,0.5);
+}
+
+.button-setup
+{
+	text-decoration:none;
+	background-color:#fff;
+	color:#6f83a2;
+	float:right;
+	margin:5px;
+	padding:5px;
+	box-shadow:0px 5px 0px rgba(149,179,215,0.5);
+	
+}
+
+.button-setup:hover
+{
+	background-color:#95b3d7;
+	color:#e4ecf6;
 }
