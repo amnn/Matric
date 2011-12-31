@@ -212,7 +212,13 @@ class Expression < Numeric
       when Mat
         
         unless @val.det.simplify == 0
-          return @val.val.inverse.simplify
+          inv = @val.val.inverse
+          case inv
+          when Expression
+            return inv.simplify
+          when Matrix
+            return Expression.new( inv ).simplify
+          end
         else
           raise SingularMatrixError.new(@val.val), "Attempted to invert a singular matrix"
         end

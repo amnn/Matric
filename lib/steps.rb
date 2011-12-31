@@ -22,6 +22,7 @@ class Expression::Inverse
     
     the_steps   = []
     value       = @val.simplify
+    dim         = value.val.dim
     determinant = value.det.simplify
     
     the_steps << Steps["Invert matrix.", value.display, nil]
@@ -31,13 +32,21 @@ class Expression::Inverse
     the_steps << Steps["(If the determinant is 0, The matrix cannot be inverted.)", nil]
     
     unless determinant == 0
+      if dim.x > 1 && dim.y > 1
+        cofactors = value.cofactors.simplify
+        inverted  = ((1.0/determinant)*cofactors.trn).simplify
       
-      cofactors = value.cofactors.simplify
-      inverted  = ((1.0/determinant)*cofactors.trn).simplify
-      
-      the_steps << Steps["Calculate the cofactors matrix.", cofactors.display, value.cofactors.steps]
-      the_steps << Steps["Transpose the coractors matrix.", cofactors.trn.simplify.display]
-      the_steps << Steps["Multiply the reciprocal of the determinant with the transpose of the cofactors matrix.", inverted.display, nil]
+        the_steps << Steps["Calculate the cofactors matrix.", cofactors.display, value.cofactors.steps]
+        the_steps << Steps["Transpose the coractors matrix.", cofactors.trn.simplify.display]
+        the_steps << Steps["Multiply the reciprocal of the determinant with the transpose of the cofactors matrix.", inverted.display, nil]
+      else
+        case dim
+        when Dimension[0,0]
+          the_steps << Steps["The inverse of an empty matrix is another empty matrix", value.display ]
+        when Dimension[1,1]
+          the_steps << Steps["The inverse of a 1x1 matrix is the reciprocal of its determinant", value.inverse.display ]
+        end
+      end
     end
     
     the_steps

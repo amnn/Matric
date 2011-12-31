@@ -383,14 +383,14 @@ class Matrix
       return self               # Return an empty matrix.
 
     elsif d.x == 1 && d.y == 1  # For a 1x1 matrix:
-
+      
       return Matrix[ [1.0/det_x] ] # Return 1/det in a 1x1 matrix.
 
     else
 
       # Calculate the transposition of the cofactors matrix.
       tmat_c = self.cofactors.trn
-
+      
       # Multiply with the reciprocal of the determinant to get the inverse.
       mat_i  = (1.0/det_x) * tmat_c
 
