@@ -70,4 +70,5 @@ module CalculateHelper
     return false if /^(?:.*\n){52}$/ !~ contents
     contents.split("\n")[0...26].map { |x| x == "" || !(is_numeric x).nil? }.inject(true) { |t,b| t && b }
   end
+  
 end

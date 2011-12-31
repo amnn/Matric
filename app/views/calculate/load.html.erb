@@ -1,7 +1,8 @@
 <%= render "variable_pane"%>
-	<div id="flash" class="default-on <%= flash[:type] %>">
-		<%= flash[:msg] %>
-	</div>
+
+<div id="flash" class="default-on <%= flash[:type] %>">
+	<%= flash[:msg] %>
+</div>
 
 <div id="load-pane">
 	<%= form_tag load_path, :multipart => true do %>

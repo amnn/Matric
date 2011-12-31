@@ -7,14 +7,14 @@ class CalculateController < ApplicationController
     case params[:commit]
     when "Calculate"
       if @calc.parse(params[:calc])
-        flash[:msg] << "Parse Succesful! ... "
+        flash[:msg] << "Parse Successful! ... "
         flash[:type] = "notice"
         begin
           @final_expr = @calc.calculate
-          append = "Calculation Succesful!"
+          append = "Calculation Successful!"
           
         rescue SingularMatrixError
-          append = "Calculation Succesful!"
+          append = "Calculation Successful!"
           
           @final_expr = Steps["No Final Answer. Attempted to invert singular matrix.", nil, @calc.subd_calc.steps ]
           
@@ -52,7 +52,7 @@ class CalculateController < ApplicationController
         
         d.y.times do |j|
         d.x.times do |i|
-          if (elem = parse_element(params["val-#{i},#{j}".to_sym]))
+          if (elem = parse_element(params[:"val-#{i},#{j}"]))
             rows[j][i] = elem
           else
             flash[:msg] = "Save Failed!"
@@ -63,15 +63,15 @@ class CalculateController < ApplicationController
         
         @calc.add_matrix @mat, *rows unless flash[:type] == "error"
         
-        flash[:msg] ||= "Save Succesful!"
-        flash[:type] ||= "notice"
+        flash[:msg] ||= "Save Successful!"
+        flash[:type] ||= "notice".
         
       end
     when "Clear"
       
       @calc.clear_matrix @mat
       
-      flash[:msg] = "Clear Succesful!"
+      flash[:msg] = "Clear Successful!"
       flash[:type] = "notice"
       
       d = Dimension.new(params[:_dim_x].to_i, params[:_dim_y].to_i)
@@ -82,6 +82,8 @@ class CalculateController < ApplicationController
     when "Confirm" # Dimension change
       @d = Dimension.new(params[:dim_x].to_i, params[:dim_y].to_i)
     end
+
+    # Variables specific to Save/Clear
 
     mat ||= @calc.mats[@mat.to_sym] ? @calc.mats[@mat.to_sym].val : nil
     d   ||= @calc.mats[@mat.to_sym] ? mat.dim : Dimension.new(0,0)
@@ -94,6 +96,8 @@ class CalculateController < ApplicationController
       @fields["field-#{i}_#{j}"] = mat[i,j] rescue ""
     end
     end
+    
+    # Variables Specific to New/Resize
     
     if @calc.mats[@mat.to_sym]
       @d ||= @calc.mats[@mat.to_sym].val.dim
@@ -122,7 +126,7 @@ class CalculateController < ApplicationController
         val = v.to_f == v.to_i ? v.to_i : v.to_f
         @calc.add_var @var, val
 
-        flash[:msg]  = "Save Succesful!"
+        flash[:msg]  = "Save Successful!"
         flash[:type] = "notice"
       else
 
@@ -132,7 +136,7 @@ class CalculateController < ApplicationController
     when "Clear"
       @calc.clear_var @var
 
-      flash[:msg]  = "Clear Succesful!"
+      flash[:msg]  = "Clear Successful!"
       flash[:type] = "notice"
     end
 
@@ -169,7 +173,7 @@ class CalculateController < ApplicationController
           
           if validate_state_file contents
             @calc.load_state contents
-            flash[:msg]  = "Loaded State From File Succesfully!"
+            flash[:msg]  = "Loaded State From File Successfully!"
             flash[:type] = "notice"
           end
         

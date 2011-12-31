@@ -50,8 +50,6 @@ freeform_setup = ->
 check_freeform_answer = ->
 	d_x = parseInt($("#_dim_x").val()) - 1
 	d_y = parseInt($("#_dim_y").val()) - 1
-	i = 0
-	j = 0
 	
 	(->
 		value_digest = hex_md5 "#{parseInt $("#field-#{i}_#{j}").val()}"
@@ -62,9 +60,6 @@ check_freeform_answer = ->
 		else
 			$("#field-#{i}_#{j}").removeClass().addClass "symbol-input incorrect"
 	)() for i in [0..d_x] for j in [0..d_y]	
-	
-check_single_freeform_answer = ->
-	
 
 $(document).ready topics_setup
 $(document).ready test_type_setup

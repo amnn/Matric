@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   around_filter :wrap_sync
   before_filter :clear_flash_msg
 
-
   def wrap_sync
     sync_session
     yield
