@@ -513,10 +513,3 @@ class Matrix
   end
 
 end
-
-m = Matrix[ [1,2] ]
-n = m.trn
-p m
-p n
-p m*n
-p n*m

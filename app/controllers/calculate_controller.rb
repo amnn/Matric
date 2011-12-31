@@ -64,8 +64,8 @@ class CalculateController < ApplicationController
         @calc.add_matrix @mat, *rows unless flash[:type] == "error"
         
         flash[:msg] ||= "Save Successful!"
-        flash[:type] ||= "notice".
-        
+        flash[:type] ||= "notice"
+     
       end
     when "Clear"
       
