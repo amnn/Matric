@@ -17,9 +17,17 @@ module CalculateHelper
     x_str = x.to_s
     
     x_str.gsub!(/\^/, "**")
-    x_str.gsub!(/[a-z]+/) do |chars|
+    
+    pattern = Regexp.union( 
+    /[a-z\)]\d+(?:\.\d+)?[a-z\(]/ , 
+    /[a-z\)][\d\(]/ , 
+    /[\d\)][a-z]/ )
+    
+    x_str.gsub!( pattern ) do |chars|
       chars.split("").join("*")
     end
+    
+    x_str.gsub!(/[a-z]+/){ |c| c.split("").join("*") }
     
     x_str
   end
