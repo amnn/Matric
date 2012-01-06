@@ -13,6 +13,8 @@ Matric::Application.routes.draw do
   match "test/setup" => "test#setup", :as => :test_setup, :via => [:get, :post]
   match "test/q" => "test#test", :as => :test_question, :via => [:get, :post]
 
+  match "help" => "calculate#help", :as => :help, :via => [:get]
+
   get "test/setup"
 
   get "calculate/index"
