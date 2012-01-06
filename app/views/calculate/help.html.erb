@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Matric - Help</title>
+	<%= stylesheet_link_tag "help" %>
+</head>
+<body>
+<div id="help">
+	<h2 id="top">Contents</h2>
+	<ul>
+		<li><a href="#operators">Operators</a></li>
+		<li><a href="#functions">Functions</a></li>
+		<li><a href="#variables">Variables</a></li>
+		<li><a href="#matrices">Matrices</a></li>
+		<li><a href="#generators">Generators</a></li>
+	</ul>
+	
+	<div id="operators">
+		<h2>Operators - <a href="#top">top</a></h2>
+		<p>
+			The following operators are available in Matric:
+		</p>
+		<table>
+			<tr><td>Addition</td><td>+</td></tr>
+			<tr><td>Subtraction</td><td>-</td></tr>
+			<tr><td>Multiplication</td><td>*</td></tr>
+			<tr><td>Division</td><td>/</td></tr>
+			<tr><td>Exponentiation</td><td>**</td></tr>
+		</table>
+		<p>
+			All the above operators are binary, meaning they must take two
+			operands, or they will produce an error.
+		</p>
+		<p>
+			The first two operators can operate on both matrices and scalar
+			values, but they must be applied to two matrices, or two scalars
+			not a matrix and a scalar.
+		</p>
+		<p>
+			The third operator (*) can be applied to matrices and scalars
+			interchangeably, and together (i.e. scalar multiplication of
+			matrices is possible.).
+		</p>
+		<p>
+			In the fourth operator (/), only scalar values can be used. And
+			in the fifth operator (**), matrices can only be present in the
+			left operand.
+		</p>
+	</div>
+	
+	<div id="functions">
+		<h2>Functions - <a href="#top">top</a></h2>
+		<p>
+			The system provides certain functions for working with matrices:
+		</p>
+		<table>
+			<tr>
+				<td>trn(A)</td>
+				<td>Matrix Transposition</td>
+				<td>Converts every row in the matrix to a column, and vice
+					versa, returning another matrix</td>
+			</tr>
+			<tr>
+				<td>cofactors(A)</td>
+				<td>Cofactor Matrix</td>
+				<td>Replaces every element with its cofactor from the original
+					matrix, returning another matrix</td>
+			</tr>
+			<tr>
+				<td>det(A)</td>
+				<td>Determinant</td>
+				<td>Calculates the determinant of a provided matrix, returning
+					a numeric value</td>
+			</tr>
+			<tr>
+				<td>inverse(A)</td>
+				<td>Matrix Inverse</td>
+				<td>Produces the matrix that, when multiplied with the
+					provided matrix, creates an identity matrix</td>
+			</tr>
+		</table>
+		<p>
+			Functions are applied by typing their name, followed by
+			parentheses, containing the matrix they should act upon:
+		</p>
+			<pre>inverse( A )</pre>
+		<p>	
+			Caution should be taken, as function names are <em>case
+			sensitive</em>, that is to say a function named "Inverse"
+			differs from the (actual) function "inverse".
+		</p>
+	</div>
+	
+	<div id="variables">
+		<h2>Variables - <a href="#top">top</a></h2>
+		<p>
+			There are a variety of variables that can be used to either
+			substitute values in to a calculation or to perform symbolic
+			manipulation:
+		</p>
+		<table>
+			<tr>
+				<td>Ans</td>
+				<td>A special symbol that can be used to substitute the
+					answer from the previous calculation in to the current
+					one.</td>
+			</tr>
+			<tr>
+				<td>a..z</td>
+				<td>The lowercase characters 'a' through 'z' each stand for a
+					variable that could contain a numeric value.</td>
+			</tr>
+			<tr>
+				<td>A..Z</td>
+				<td>The uppercase characters 'A' to 'Z' are likewise used to
+					represent a matrix</td>
+			</tr>
+		</table>
+		<p>
+			As symbols represent numeric values (scalar or matric), they can be
+			used anywhere a numeric value would be allowed. If a value has
+			been assigned to one of the variables in the variable pane 
+			(left of calculation pane), then this value is substituted
+			in place of the symbol when the calculation takes place. If,
+			however, there is no value assigned to the symbol, the
+			system will attempt to simplify the calculation as much as
+			possible while still containing symbols. This is how the system
+			deals with both lowercase, 'variable' symbols, and uppercase
+			'matrix' symbols.
+		</p>
+	</div>
+	
+	<div id="matrices">
+		<h2>Matrices - <a href="#top">top</a></h2>
+		<p>
+			As described in the above <a href="#variables">Variables</a>
+			section, matrices can be represented as symbols that will be later
+			substituted in to the calculation, which is useful for matrices
+			that you wish to use multiple times, however, for matrices that are
+			simply required for one calculation, an anonymous, or constant
+			matrix can be written straight into the calculation.
+		</p>
+		<p>
+			The syntax for an anonymous matrix is as follows:<br/>
+			A list of elements enclosed in square brackets, delimited by commas,
+			themselves delimited by commas and enclosed in square brackets. E.g.
+			the anonymous matrix:
+		</p>
+		<pre>[[1,2],[3,4]]</pre>
+		<p>
+			Will produce the following matrix:
+		</p>
+		<pre>
++---+---+
+| 1 | 2 |
+| 3 | 4 |
++---+---+</pre>
+
+		<p>
+			Anonymous matrices may contain expressions and symbols as elements,
+			just like matrices assigned to symbols
+		</p>
+	</div>
+	
+	<div id="generators">
+		<h2>Generators - <a href="#top">top</a></h2>
+		<p>
+			There are certain key matrices that hold particular significance.
+			For these such matrices, there are generator functions that make it
+			simpler to use these commonly used matrices:
+		</p>
+		<table>
+			<tr>
+				<td>Matrix.identity(s)</td>
+				<td>
+					Produces an identity matrix of size <em>s</em>x<em>s</em>
+				</td>
+			</tr>
+			<tr>
+				<td>Matrix.zero(s)</td>
+				<td>Produces the zero matrix of size <em>s</em>x<em>s</em></td>
+			</tr>
+			<tr>
+				<td>Matrix.random(s,l)</td>
+				<td>Generates a random integer matrix of size 
+					<em>s</em>x<em>s</em> whose elements fall within the
+					range of +<em>l</em> to -<em>l</em>.</td>
+			</tr>
+			<tr>
+				<td>Matrix.nice(s,l)</td>
+				<td>Generates a random integer matrix of size
+					<em>s</em>x<em>s</em> whose elements fall within the range
+					of +<em>sl<sup>2</sup></em> to <em>sl<sup>2</sup></em> that
+					can be inverted to always produce another integer matrix.
+					</td>
+		</table>
+		<p>
+			These generator functions can be used anywhere a normal matrix would
+			have been used, however, one restriction is that, unlike the
+			aforementioned functions, they cannot accept symbols as arguments 
+			(as an <em>a</em> sized identity matrix does not make rational sense
+			in a calculation).
+		</p>
+	</div>
+</div>
+</body>
+</html>

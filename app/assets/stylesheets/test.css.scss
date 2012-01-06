@@ -100,21 +100,21 @@
 {
 	display:block;
 	cursor:pointer;
-	border:solid 2px #000;
-	background:#333;
-	color:#eee;
 	width:200px;
-	padding:5px;
 	margin:20px 0px;
 	font-size:16pt;
-}
-
-#test-choice ul li.on
-{
 	background:#fff;
 	color:#666;
 	padding:7px;
 	border:none;
+}
+
+#test-choice ul li.on
+{
+	border:solid 2px #000;
+	background:#333;
+	padding:5px;
+	color:#eee;
 }
 
 /* Submit Button */

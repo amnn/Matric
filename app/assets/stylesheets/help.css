@@ -1,0 +1,49 @@
+//= require_self
+
+body 
+{
+	padding:0;
+	margin:0;
+}
+
+#help {background:#eee;}
+
+#help *
+{
+	font-family:"Monaco", "Consolas", "Courier", sans-serif;
+	font-size:10pt;
+}
+
+#help p
+{
+	max-width:600px;
+}
+
+#help a
+{
+	color:#333;
+}
+
+#help a:visited
+{
+	color:#666;
+}
+
+#help table
+{
+	background:#ccc;
+	max-width:600px;
+}
+
+ #help table td
+{
+	padding:10px;
+}
+
+#help pre
+{
+	background:#000;
+	color:#fff;
+	padding:10px;
+	max-width:580px;
+}

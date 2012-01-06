@@ -191,4 +191,10 @@ class CalculateController < ApplicationController
     end
   end
 
+  def help
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
+  end
+
 end
